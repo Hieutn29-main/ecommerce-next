@@ -1,0 +1,36 @@
+{
+  "name": "ecommerce-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.75.5",
+    "@types/styled-components": "^5.1.34",
+    "antd": "^5.25.0",
+    "autoprefixer": "^10.4.21",
+    "axios": "^1.9.0",
+    "next": "14.0.4",
+    "postcss": "^8.5.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "styled-components": "^6.1.18",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.74.7",
+    "@types/node": "^18.19.99",
+    "@types/react": "^18.2.41",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "15.3.2",
+    "eslint-plugin-react": "^7.37.5",
+    "typescript": "^5"
+  }
+}
