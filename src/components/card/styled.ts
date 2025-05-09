@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const StyledWrapper = styled.div`
   .card {
-    width: 190px;
-    height: 254px;
+    width: 290px;
+    min-width: 290px;
+    height: 354px;
     border-radius: 20px;
     background: #f5f5f5;
     position: relative;
-    padding: 1.8rem;
     border: 2px solid #c3c6ce;
     transition: 0.5s ease-out;
     overflow: visible;
@@ -17,8 +17,9 @@ export const StyledWrapper = styled.div`
     color: black;
     height: 100%;
     gap: 0.5em;
-    display: grid;
-    place-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .card-button {
@@ -26,7 +27,7 @@ export const StyledWrapper = styled.div`
     width: 60%;
     border-radius: 1rem;
     border: none;
-    background-color: #008bf8;
+    background-color: #f79b72;
     color: #fff;
     font-size: 1rem;
     padding: 0.5rem 1rem;
@@ -40,22 +41,33 @@ export const StyledWrapper = styled.div`
 
   .text-body {
     color: rgb(134, 134, 134);
+    padding: 0px 20px 10px 20px;
+
+    height: 30%;
   }
 
   /*Text*/
   .text-title {
     font-size: 1.5em;
     font-weight: bold;
+    padding: 20px 20px 10px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /*Hover*/
   .card:hover {
-    border-color: #008bf8;
+    border-color: #f79b72;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
   }
 
   .card:hover .card-button {
     transform: translate(-50%, 50%);
     opacity: 1;
+  }
+  .image {
+    width: 100%;
+    height: 50%;
   }
 `;

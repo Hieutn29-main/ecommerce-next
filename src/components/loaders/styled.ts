@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const LoaderWrapper = styled.div`
   z-index: 999;
   position: absolute;
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: rgba(240, 178, 64, 0.08);
   width: 100%;
   height: 100%;
   top: 0;

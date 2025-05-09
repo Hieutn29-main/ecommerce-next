@@ -1,14 +1,21 @@
+"use client";
 import { StyledWrapper } from "@/components/card/styled";
+import { truncateText } from "@/utils";
 import React from "react";
 
-const CardComponent = () => {
+interface CardComponent_I {
+  title: string;
+  description: string;
+  thumbnail: string;
+}
+const CardComponent = ({ title, description, thumbnail }: CardComponent_I) => {
   return (
     <StyledWrapper>
       <div className="card">
         <div className="card-details">
-          <p className="text-title">Card title</p>
-          <p className="text-body">Here are the details of the card</p>
-          <img src="/images/bg-login.jpg" alt="sss" />
+          <p className="text-title">{title}</p>
+          <p className="text-body">{truncateText(description, 100)}</p>
+          <img className="image" src={thumbnail} alt="sss" />
         </div>
         <button
           className="card-button"
@@ -16,7 +23,7 @@ const CardComponent = () => {
             console.log("mua");
           }}
         >
-          buy now
+          Show More
         </button>
       </div>
     </StyledWrapper>

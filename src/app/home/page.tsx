@@ -11,7 +11,6 @@ import React from "react";
 const page = () => {
   return (
     <LayoutGeneral>
-      {/* introduce dummy json */}
       <Section1 />
       <Section2 />
       <Section3 />
