@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { serverToLogin } from "@/api-requests/login";
 import { message } from "antd";
 import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import {
   ButtonWrapper,
   LoginForm,
@@ -17,11 +17,15 @@ import { LOGIN_FAILED, LOGIN_SUCCESS } from "@/message";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import Loader from "@/components/loaders";
+import CardComponent from "@/components/card";
+import useNotificationApp from "@/hooks/useNotification";
 
 const page = () => {
   const router = useRouter();
+  const { contextHolder, openNotificationWithIcon } = useNotificationApp();
   const mutation = useMutation({
     mutationFn: serverToLogin,
+    mutationKey: ["login"],
   });
   const onFinish: FormProps<Login_I>["onFinish"] = async (values) => {
     if (mutation.isPending) return;
@@ -32,22 +36,32 @@ const page = () => {
       });
 
       if (result) {
-        message.success(LOGIN_SUCCESS);
-        router.push("/");
+        openNotificationWithIcon({
+          type: "success",
+          message: "Login",
+          description: LOGIN_SUCCESS,
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 500);
       }
     } catch (error) {
-      console.log(error);
-      message.error(LOGIN_FAILED);
+      console.error(error);
+      openNotificationWithIcon({
+        type: "error",
+        message: "Login",
+        description: LOGIN_FAILED,
+      });
     }
   };
 
   const onFinishFailed: FormProps<Login_I>["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
   return (
     <LoginWrapper>
       <Loader isPending={mutation.isPending} />
+      {contextHolder}
       <LoginForm
         name="basic"
         labelCol={{ span: 24 }}

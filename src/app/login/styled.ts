@@ -13,6 +13,7 @@ export const LoginForm = styled(Form<Login_I>)`
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 40px;
   width: 30%;
+  min-width: 300px;
   border-radius: 8px;
   background: white;
   transition: box-shadow 0.3s ease; /* thêm transition để làm mượt hiệu ứng */

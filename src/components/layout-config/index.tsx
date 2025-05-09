@@ -2,7 +2,6 @@
 
 import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 
 interface LayoutPage_I {
   children: ReactNode;
