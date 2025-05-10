@@ -13,7 +13,7 @@ const Section3 = () => {
   });
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
   if (!isMounted) return null;
   return (
     <Section3Wrapper ref={ref}>
@@ -37,6 +37,7 @@ const Section3 = () => {
               <ButtonQuietDuck78
                 name={"View more"}
                 href="https://dummyjson.com/docs"
+                isButton={false}
               />
             </div>
           </div>

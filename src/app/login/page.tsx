@@ -19,6 +19,7 @@ import { AxiosResponse } from "axios";
 import Loader from "@/components/loaders";
 import CardComponent from "@/components/card";
 import useNotificationApp from "@/hooks/useNotification";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/variable";
 
 const page = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const page = () => {
           description: LOGIN_SUCCESS,
         });
         setTimeout(() => {
-          router.push("/");
+          router.push("/admin");
         }, 500);
       }
     } catch (error) {
@@ -62,7 +63,7 @@ const page = () => {
 
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
   if (!isMounted) return null;
   return (
     <LoginWrapper>

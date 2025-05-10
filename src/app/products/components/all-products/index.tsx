@@ -1,7 +1,7 @@
 "use client";
 import { serverToGetAllProducts } from "@/api-requests/products";
 import { useMutation } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Skeleton } from "antd";
 import Loader from "@/components/loaders";
 import CardComponent from "@/components/card";
@@ -37,7 +37,8 @@ const AllProducts = () => {
   }, []);
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
+
   if (!isMounted) return null;
   return (
     <AllProductsWrapper>
@@ -49,6 +50,7 @@ const AllProducts = () => {
             title={product.title}
             description={product.description}
             thumbnail={product.thumbnail}
+            id={product.id}
           />
         ))}
         {mutation.isPending && <Skeleton paragraph={{ rows: 5 }} />}

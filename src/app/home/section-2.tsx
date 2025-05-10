@@ -14,7 +14,7 @@ const Section2 = () => {
   });
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
   if (!isMounted) return null;
   return (
     <Section2Wrapper ref={ref}>

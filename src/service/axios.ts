@@ -1,8 +1,4 @@
-import {
-  ACCESS_TOKEN,
-  NEXT_PUBLIC_API,
-  NEXT_PUBLIC_URL,
-} from "@/constants/variable";
+import { NEXT_PUBLIC_API, NEXT_PUBLIC_URL } from "@/constants/variable";
 import axios from "axios";
 
 const instance = axios.create({
@@ -15,10 +11,6 @@ export const serverInstance = axios.create({
 
 axios.interceptors.request.use(
   function (config) {
-    const access_token = localStorage.getItem(ACCESS_TOKEN);
-    if (access_token) {
-      config.headers.Authorization = `Bearer ${access_token}`;
-    }
     return config;
   },
   function (error) {

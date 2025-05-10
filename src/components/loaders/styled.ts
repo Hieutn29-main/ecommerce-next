@@ -1,12 +1,13 @@
 import styled from "styled-components";
 export const LoaderWrapper = styled.div`
   z-index: 999;
-  position: absolute;
+  position: fixed;
   background-color: rgba(240, 178, 64, 0.08);
   width: 100%;
-  height: 100%;
+  height: 100vh;
   top: 0;
   left: 0;
+  bottom: 0;
   display: grid;
   place-items: center;
   .wheel-and-hamster {

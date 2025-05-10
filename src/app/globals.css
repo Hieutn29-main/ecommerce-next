@@ -8,3 +8,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
  
 }
+/* Đoạn CSS này sẽ làm cho body không thể cuộn khi loader bật */
+.no-scroll {
+  overflow: hidden;
+}
+.custom-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f69c5e;
+  margin: 20px;
+  transition: background 0.3s ease;
+}
+
+.slick-dots li.slick-active .custom-dot {
+  background: darkred;
+}
+
+.custom-next-arrow{
+  position: absolute;
+  top:10%;
+  left:-5%;
+}
+.custom-prev-arrow{
+  position: absolute;
+  top:10%;
+  right:-5%
+}

@@ -6,3 +6,16 @@ export const toGetAllCategories = async () => {
 export const serverToGetAllCategories = async () => {
   return serverInstance.get("/products/categories");
 };
+
+export const toGetProductsByCategories = async (
+  category: string,
+  params?: any
+) => {
+  return instance.get(`/products/category/${category}`, { params });
+};
+export const serverToGetProductsByCategories = async (
+  category: string,
+  params?: any
+) => {
+  return serverInstance.get(`/products/category/${category}`, { params });
+};

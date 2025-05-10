@@ -4,8 +4,20 @@ export const NEXT_PUBLIC_API = process.env.NEXT_PUBLIC_API;
 export const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 export const ACCESS_TOKEN = "accessToken";
+export const REFRESH_TOKEN = "refreshToken";
 
 export const getAccessToken = () => localStorage.getItem(ACCESS_TOKEN);
+export const setAccessToken = (token: string) =>
+  localStorage.setItem(ACCESS_TOKEN, token);
+
+export const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN);
+export const setRefreshToken = (token: string) =>
+  localStorage.setItem(REFRESH_TOKEN, token);
+
+export const removeToken = () => {
+  localStorage.removeItem(REFRESH_TOKEN);
+  localStorage.removeItem(ACCESS_TOKEN);
+};
 
 export const HEADER_NAV_LINK = {
   Home: "home",

@@ -1,5 +1,6 @@
 import AllProducts from "@/app/products/components/all-products";
 import CategoryProducts from "@/app/products/components/category";
+import SearchProducts from "@/app/products/components/search-products";
 import LayoutGeneral from "@/components/layout-general";
 import React from "react";
 
@@ -11,7 +12,8 @@ const page = () => {
           background: "#EFEEEA",
         }}
       >
-        <AllProducts />
+        <SearchProducts />
+        {/* <AllProducts /> */}
         <CategoryProducts />
       </div>
     </LayoutGeneral>

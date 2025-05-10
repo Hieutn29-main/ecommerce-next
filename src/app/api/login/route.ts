@@ -1,5 +1,6 @@
 import { toLogin } from "@/api-requests/login";
-import { ACCESS_TOKEN } from "@/constants/variable";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/variable";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -23,15 +24,15 @@ export async function POST(request: Request) {
     }
 
     const accessToken = res?.data?.accessToken;
+    const refreshToken = res?.data?.refreshToken;
     if (accessToken) {
       const response = NextResponse.json(res?.data);
-
-      response.cookies.set(ACCESS_TOKEN, accessToken, {
+      cookies().set(ACCESS_TOKEN, accessToken, {
         httpOnly: true,
         path: "/",
         maxAge: 60 * 60 * 24 * 7,
       });
-
+      cookies().set(REFRESH_TOKEN, refreshToken);
       return response;
     } else {
       return NextResponse.json(

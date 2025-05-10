@@ -17,7 +17,7 @@ const ButtonSlipperySnake30 = ({
 
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
   if (!isMounted) return null;
   return (
     <StyledWrapper>
