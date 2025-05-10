@@ -24,7 +24,7 @@ const Section5 = () => {
   };
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
   if (!isMounted) return null;
   return (
     <Section5Wrapper ref={ref}>

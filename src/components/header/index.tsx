@@ -11,7 +11,7 @@ const HeaderApp = () => {
   const [isMounted, setIsMounted] = useState(false);
   const handleNavigate = (hash: string) => {
     setHash(hash);
-    router.push(hash);
+    router.push(`/${hash}`);
   };
 
   const renderLink = (links: Record<string, string>) => {

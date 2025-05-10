@@ -1,17 +1,14 @@
-import ButtonC from "@/app/home/button";
 import Section1 from "@/app/home/section-1";
 import Section2 from "@/app/home/section-2";
 import Section3 from "@/app/home/section-3";
 import Section4 from "@/app/home/section-4";
 import Section5 from "@/app/home/section-5";
-
 import LayoutGeneral from "@/components/layout-general";
 import React from "react";
 
 const page = () => {
   return (
     <LayoutGeneral>
-      {/* introduce dummy json */}
       <Section1 />
       <Section2 />
       <Section3 />

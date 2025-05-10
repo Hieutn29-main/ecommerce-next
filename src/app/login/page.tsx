@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { cookies } from "next/headers";
 import { serverToLogin } from "@/api-requests/login";
 import { message } from "antd";
@@ -19,9 +19,11 @@ import { AxiosResponse } from "axios";
 import Loader from "@/components/loaders";
 import CardComponent from "@/components/card";
 import useNotificationApp from "@/hooks/useNotification";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/variable";
 
 const page = () => {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   const { contextHolder, openNotificationWithIcon } = useNotificationApp();
   const mutation = useMutation({
     mutationFn: serverToLogin,
@@ -42,7 +44,7 @@ const page = () => {
           description: LOGIN_SUCCESS,
         });
         setTimeout(() => {
-          router.push("/");
+          router.push("/admin");
         }, 500);
       }
     } catch (error) {
@@ -58,6 +60,11 @@ const page = () => {
   const onFinishFailed: FormProps<Login_I>["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) return null;
   return (
     <LoginWrapper>
       <Loader isPending={mutation.isPending} />

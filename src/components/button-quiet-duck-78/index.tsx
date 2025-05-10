@@ -1,10 +1,17 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import styled from "styled-components";
 
-const ButtonQuietDuck78 = ({ href, name }: any) => {
+const ButtonQuietDuck78 = ({ href, name, isButton }: any) => {
+  const router = useRouter();
   return (
     <StyledWrapper>
-      <button>
+      <button
+        onClick={() => {
+          isButton && router.push("/products");
+        }}
+      >
         <svg
           height={24}
           width={24}
@@ -17,7 +24,7 @@ const ButtonQuietDuck78 = ({ href, name }: any) => {
             fill="currentColor"
           />
         </svg>
-        <a href={href}>{name}</a>
+        <a href={!isButton && href}>{name}</a>
       </button>
     </StyledWrapper>
   );

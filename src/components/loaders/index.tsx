@@ -1,8 +1,20 @@
+"use client";
 import { LoaderWrapper } from "@/components/loaders/styled";
 import { Loader_I } from "@/types";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Loader = ({ isPending }: Loader_I) => {
+  useEffect(() => {
+    if (isPending) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isPending]);
   return (
     isPending && (
       <LoaderWrapper>

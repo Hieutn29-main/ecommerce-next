@@ -12,9 +12,8 @@ export function middleware(request: NextRequest) {
   if (!accessToken && !isLoginPage) {
     return NextResponse.redirect(new URL("/login", request.url)); // Redirect về /login nếu không có token
   }
-  // Nếu không có token và không phải trang login, chuyển hướng về trang login
   if (accessToken && isLoginPage) {
-    return NextResponse.redirect(new URL("/", request.url)); // Redirect về /login nếu không có token
+    return NextResponse.redirect(new URL("/admin", request.url)); // Redirect về /login nếu không có token
   }
 
   // Nếu có token hoặc đang ở trang login, cho phép tiếp tục
@@ -23,5 +22,5 @@ export function middleware(request: NextRequest) {
 
 // Áp dụng middleware cho tất cả các route, trừ /login
 export const config = {
-  matcher: ["/home", "/login", "/", "/products"],
+  matcher: ["/login", "/", "/admin/:path*"],
 };
