@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const LayoutPrivateWrapper = styled.div``;
 export const ContentPrivateWrapper = styled.div`
   display: flex;
-  background: #fff1d5;
+  background: white;
 `;
 export const ChildrenWrapper = styled.div`
   overflow: auto;

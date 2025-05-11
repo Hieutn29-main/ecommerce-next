@@ -38,14 +38,8 @@ const page = () => {
       });
 
       if (result) {
-        openNotificationWithIcon({
-          type: "success",
-          message: "Login",
-          description: LOGIN_SUCCESS,
-        });
-        setTimeout(() => {
-          router.push("/admin");
-        }, 500);
+        message.success(LOGIN_SUCCESS);
+        router.push("/admin/products/get-all");
       }
     } catch (error) {
       console.error(error);

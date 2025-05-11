@@ -3,6 +3,7 @@ import {
   toGetAllCategories,
   toGetProductsByCategories,
 } from "@/api-requests/products/categories";
+import instance from "@/service/axios";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -42,6 +43,60 @@ export async function GET(
       return NextResponse.json(
         { message: "An unexpected error occurred", error: error.message },
         { status: 500 }
+      );
+    }
+  }
+}
+
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const body = await request.json();
+  const { id } = params;
+
+  try {
+    const res = await instance.put(`/products/${id}`, body);
+    return NextResponse.json(res?.data);
+  } catch (error: any) {
+    if (error) {
+      return Response.json(error.payload, {
+        status: error.status,
+      });
+    } else {
+      return Response.json(
+        {
+          message: "Có lỗi xảy ra",
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+  }
+}
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
+
+  try {
+    const res = await instance.delete(`/products/${id}`);
+    return NextResponse.json(res?.data);
+  } catch (error: any) {
+    if (error) {
+      return Response.json(error.payload, {
+        status: error.status,
+      });
+    } else {
+      return Response.json(
+        {
+          message: "Có lỗi xảy ra",
+        },
+        {
+          status: 500,
+        }
       );
     }
   }

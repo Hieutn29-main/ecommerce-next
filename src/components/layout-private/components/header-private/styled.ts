@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderPrivateWrapper = styled.div`
   height: 64px;
-  background: #f0a04b;
+  background: #eb5b00;
   display: flex;
   align-items: center;
   .container {
