@@ -117,13 +117,13 @@ const CategoryProducts = () => {
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1190,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 920,
         settings: {
           slidesToShow: 2,
         },

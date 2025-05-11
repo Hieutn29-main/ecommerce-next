@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const SearchProductWrapper = styled.div`
   padding-top: 50px;
-  width: 80%;
-  margin: 0 auto;
 
   .title {
     font-size: 46px;

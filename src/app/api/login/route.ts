@@ -4,65 +4,32 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
+  const body = await request.json();
+  const cookiesStore = await cookies();
   try {
-    const body = await request.json();
-
-    if (!body || Object.keys(body).length === 0) {
-      return NextResponse.json(
-        { message: "No request body provided" },
-        { status: 400 }
-      );
-    }
-
     const res = await toLogin(body);
-
-    if (!res?.data) {
-      return NextResponse.json(
-        { message: "No data returned from login API" },
-        { status: 500 }
-      );
-    }
-
     const accessToken = res?.data?.accessToken;
     const refreshToken = res?.data?.refreshToken;
-    if (accessToken) {
-      const response = NextResponse.json(res?.data);
-      cookies().set(ACCESS_TOKEN, accessToken, {
-        httpOnly: true,
-        path: "/",
-        maxAge: 60 * 60 * 24 * 7,
-      });
-      cookies().set(REFRESH_TOKEN, refreshToken);
-      return response;
-    } else {
-      return NextResponse.json(
-        { message: "No access token received from login API" },
-        { status: 500 }
-      );
-    }
+    cookiesStore.set(ACCESS_TOKEN, accessToken, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+    cookiesStore.set(REFRESH_TOKEN, refreshToken);
+    return NextResponse.json(res?.data);
   } catch (error: any) {
-    console.error("Error during POST request:", error);
-
-    if (error.response) {
-      return NextResponse.json(
-        {
-          message: "Error from external API",
-          error: error.response?.data || error.message,
-        },
-        { status: error.response?.status || 500 }
-      );
-    } else if (error.request) {
-      return NextResponse.json(
-        {
-          message: "No response received from external API",
-          error: error.message,
-        },
-        { status: 500 }
-      );
+    if (error) {
+      return Response.json(error.payload, {
+        status: error.status,
+      });
     } else {
-      return NextResponse.json(
-        { message: "An unexpected error occurred", error: error.message },
-        { status: 500 }
+      return Response.json(
+        {
+          message: "Có lỗi xảy ra",
+        },
+        {
+          status: 500,
+        }
       );
     }
   }

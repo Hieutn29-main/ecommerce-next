@@ -196,6 +196,7 @@ export const Section4Wrapper = styled.div`
 
 export const Section5Wrapper = styled.div`
   padding-top: 80px;
+  padding-bottom: 80px;
   height: 100vh;
   background: radial-gradient(
     circle at top left,

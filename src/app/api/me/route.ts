@@ -1,67 +1,61 @@
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/variable";
-import instance from "@/service/axios";
+import instance, { serverInstance } from "@/service/axios";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const acctoken = cookies().get(ACCESS_TOKEN);
-  const refresh_token = cookies().get(REFRESH_TOKEN);
+  const cookieStore = await cookies();
+  const acctoken = cookieStore.get(ACCESS_TOKEN);
+  const refreshtoken = cookieStore.get(REFRESH_TOKEN);
+
   try {
     const res = await instance.get("/auth/me", {
       headers: {
-        Authorization: `Bearer ${acctoken?.value}`,
+        Authorization: `Bearer ${acctoken}`,
       },
     });
 
-    if (!res?.data) {
-      return NextResponse.json(
-        { message: "No data returned from products API" },
-        { status: 500 }
-      );
-    }
     return NextResponse.json(res?.data);
   } catch (error: any) {
-    console.error("Error during POST request:", error);
-    if (error.response) {
-      if (error.response.status === 401) {
-        try {
-          const res = await instance.post("/auth/refresh", {
-            refreshToken: refresh_token,
-            expiresInMins: 30,
-          });
-          if (res) {
-            cookies().set(ACCESS_TOKEN, res.data.accessToken, {
-              httpOnly: true,
-              path: "/",
-              maxAge: 60 * 60 * 24 * 7,
-            });
-            cookies().set(REFRESH_TOKEN, res.data.refreshToken);
-          }
-        } catch (error) {
-          cookies().delete(ACCESS_TOKEN);
-          cookies().delete(REFRESH_TOKEN);
+    if (error.response?.status === 401) {
+      try {
+        const refreshRes = await serverInstance.post("/refresh-token", {
+          refreshToken: refreshtoken?.value,
+          expiresInMins: 30,
+        });
+        const newAccessToken = refreshRes.data?.accessToken;
+
+        if (!newAccessToken) {
+          throw new Error("Không nhận được accessToken mới");
+        }
+
+        const retryRes = await instance.get("/auth/me", {
+          headers: {
+            Authorization: `Bearer ${newAccessToken}`,
+          },
+        });
+
+        return NextResponse.json(retryRes.data);
+      } catch (error: any) {
+        if (error.response?.status === 401) {
+          return Response.json(
+            {
+              message: error.response?.data?.message,
+            },
+            {
+              status: error.response?.status,
+            }
+          );
         }
       }
-      return NextResponse.json(
-        {
-          message: "Error from external API",
-          error: error.response?.data || error.message,
-        },
-        { status: error.response?.status || 500 }
-      );
-    } else if (error.request) {
-      return NextResponse.json(
-        {
-          message: "No response received from external API",
-          error: error.message,
-        },
-        { status: 500 }
-      );
-    } else {
-      return NextResponse.json(
-        { message: "An unexpected error occurred", error: error.message },
-        { status: 500 }
-      );
     }
+    return Response.json(
+      {
+        message: error.response?.data?.message,
+      },
+      {
+        status: error.response?.status,
+      }
+    );
   }
 }

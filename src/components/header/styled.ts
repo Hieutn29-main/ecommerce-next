@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   height: 64px;
   position: sticky;
   top: 0;
@@ -12,12 +14,34 @@ export const HeaderWrapper = styled.div`
     height: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     .active-link {
       color: #1e1e2b !important;
       background-color: #f79b72;
     }
+  }
+  &::-webkit-scrollbar {
+    height: 7px; /* Chiều cao thanh cuộn ngang */
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* Màu nền của track */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #f79b72; /* Màu của thanh cuộn */
+    border-radius: 10px; /* Làm tròn góc của thanh cuộn */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #f69c5e; /* Màu khi hover thanh cuộn */
+  }
+
+  /* Loại bỏ mũi tên thanh cuộn */
+  &::-webkit-scrollbar-button {
+    display: none;
   }
 `;
 
