@@ -22,5 +22,5 @@ export function middleware(request: NextRequest) {
 
 // Áp dụng middleware cho tất cả các route, trừ /login
 export const config = {
-  matcher: ["/login", "/", "/admin/:path*"],
+  matcher: ["/login", "/admin/:path*"],
 };
