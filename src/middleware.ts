@@ -13,7 +13,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url)); // Redirect về /login nếu không có token
   }
   if (accessToken && isLoginPage) {
-    return NextResponse.redirect(new URL("/admin", request.url)); // Redirect về /login nếu không có token
+    return NextResponse.redirect(
+      new URL("/admin/products/get-all", request.url)
+    ); // Redirect về /login nếu không có token
   }
 
   // Nếu có token hoặc đang ở trang login, cho phép tiếp tục
