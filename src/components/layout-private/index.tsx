@@ -46,6 +46,8 @@ const themeConfig = {
     Input: {
       activeBorderColor: "#EB5B00",
       hoverBorderColor: "#EB5B00",
+      colorPrimaryHover: "#EB5B00", // hover
+      colorPrimaryActive: "#EB5B00", // focus
     },
     // Thêm các components khác nếu cần
   },
