@@ -15,7 +15,13 @@ export async function POST(request: Request) {
       path: "/",
       maxAge: 60 * 60 * 24 * 7,
     });
-    cookiesStore.set(REFRESH_TOKEN, refreshToken);
+
+    cookiesStore.set(REFRESH_TOKEN, refreshToken, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+    });
+
     return NextResponse.json(res?.data);
   } catch (error: any) {
     if (error) {

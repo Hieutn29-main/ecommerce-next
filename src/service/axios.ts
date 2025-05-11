@@ -7,6 +7,7 @@ const instance = axios.create({
 
 export const serverInstance = axios.create({
   baseURL: NEXT_PUBLIC_URL + "/api",
+  withCredentials: true,
 });
 
 axios.interceptors.request.use(

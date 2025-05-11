@@ -3,10 +3,13 @@ import { serverToLogout } from "@/api-requests/logout";
 import { serverToGetMe } from "@/api-requests/me";
 import { HeaderPrivateWrapper } from "@/components/layout-private/components/header-private/styled";
 import Loader from "@/components/loaders";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/variable";
 import useMounted from "@/hooks/useMounted";
 import useNotificationApp from "@/hooks/useNotification";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar, Button, Popover } from "antd";
+import { AxiosError } from "axios";
+import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -17,18 +20,27 @@ const HeaderPrivate = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["me"],
     queryFn: serverToGetMe,
-    retry: 1,
   });
   const handleLogout = async () => {
     await serverToLogout();
     router.push("/login");
   };
-  if (error) {
-    openNotificationWithIcon({
-      type: "error",
-      message: "get me",
-      description: "get me faild",
-    });
+  if (error as any) {
+    const axiosError = error as AxiosError;
+
+    if (
+      axiosError?.response?.status === 401 ||
+      axiosError?.response?.status === 500
+    ) {
+      openNotificationWithIcon({
+        type: "error",
+        message: "get me",
+        description: axiosError?.response?.statusText || "",
+      });
+      setTimeout(() => {
+        handleLogout();
+      }, 1000);
+    }
   }
 
   const content = (
