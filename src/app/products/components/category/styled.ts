@@ -41,7 +41,7 @@ export const CategoryWrapper = styled.div`
   }
   .products-container {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 50px 50px;

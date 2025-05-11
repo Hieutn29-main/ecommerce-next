@@ -6,7 +6,6 @@ import LayoutPrivate from "@/components/layout-private";
 const admin = () => {
   return (
     <LayoutPrivate>
-      <ButtonC />
       <div
         style={{
           background: "black",

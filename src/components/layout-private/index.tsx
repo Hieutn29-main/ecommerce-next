@@ -1,5 +1,6 @@
 "use client";
 import {
+  ChildrenWrapper,
   ContentPrivateWrapper,
   LayoutPrivateWrapper,
 } from "@/components/layout-private/styled";
@@ -8,6 +9,7 @@ import { ConfigProvider, theme, Layout } from "antd";
 import HeaderPrivate from "@/components/layout-private/components/header-private";
 import FooterPrivate from "@/components/layout-private/components/footer-private";
 import SidebarPrivate from "@/components/layout-private/components/sidebar-private";
+import useMounted from "@/hooks/useMounted";
 
 const { Header, Footer, Sider, Content } = Layout;
 interface LayoutGeneral_I {
@@ -50,13 +52,15 @@ const themeConfig = {
   algorithm: theme.defaultAlgorithm,
 };
 const LayoutPrivate: React.FC<LayoutGeneral_I> = ({ children }) => {
+  const { isMounted } = useMounted();
+  if (!isMounted) return null;
   return (
     <LayoutPrivateWrapper>
       <ConfigProvider theme={themeConfig}>
         <HeaderPrivate />
         <ContentPrivateWrapper>
           <SidebarPrivate />
-          <div className="children">{children}</div>
+          <ChildrenWrapper>{children}</ChildrenWrapper>
         </ContentPrivateWrapper>
         <FooterPrivate />
       </ConfigProvider>

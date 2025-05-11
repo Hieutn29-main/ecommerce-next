@@ -1,19 +1,11 @@
 "use client";
 import { SidebarPrivateWrapper } from "@/components/layout-private/components/sidebar-private/styled";
-
 import React, { useState } from "react";
-import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-} from "@ant-design/icons";
+import { RadarChartOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Menu } from "antd";
 import useMounted from "@/hooks/useMounted";
+import { useRouter } from "next/navigation";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -22,9 +14,9 @@ const items: MenuItem[] = [
   {
     key: "/admin/products",
     label: "Products",
-    icon: <MailOutlined />,
+    icon: <RadarChartOutlined />,
     children: [
-      { key: "/admin/products", label: "Option 5" },
+      { key: "/admin/products/get-all", label: "All products" },
       { key: "6", label: "Option 6" },
       { key: "7", label: "Option 7" },
       { key: "8", label: "Option 8" },
@@ -33,7 +25,7 @@ const items: MenuItem[] = [
 ];
 const SidebarPrivate = () => {
   const { isMounted } = useMounted();
-
+  const router = useRouter();
   if (!isMounted) return null;
   return (
     <SidebarPrivateWrapper>
@@ -43,9 +35,7 @@ const SidebarPrivate = () => {
         mode="inline"
         items={items}
         onSelect={({ key, selectedKeys, item }) => {
-          console.log("Selected key:", key); // key vừa được chọn
-          console.log("All selected keys:", selectedKeys); // danh sách các key được chọn (nếu multiple)
-          console.log("Selected item:", item); // toàn bộ React element
+          router.push(key);
         }}
       />
     </SidebarPrivateWrapper>

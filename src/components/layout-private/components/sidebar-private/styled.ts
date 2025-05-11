@@ -7,6 +7,7 @@ export const SidebarPrivateWrapper = styled.div`
   min-height: calc(100vh - 64px - 50px);
   overflow: auto;
   border-right: 1px solid #bfbba9;
+  background: white;
   &::-webkit-scrollbar {
     height: 7px; /* Chiều cao thanh cuộn ngang */
     width: 7px;

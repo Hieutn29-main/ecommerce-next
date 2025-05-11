@@ -1,21 +1,28 @@
 "use client";
+import { serverToLogout } from "@/api-requests/logout";
 import { serverToGetMe } from "@/api-requests/me";
 import { HeaderPrivateWrapper } from "@/components/layout-private/components/header-private/styled";
 import Loader from "@/components/loaders";
 import useMounted from "@/hooks/useMounted";
 import useNotificationApp from "@/hooks/useNotification";
 import { useQuery } from "@tanstack/react-query";
-import { Avatar, Popover } from "antd";
+import { Avatar, Button, Popover } from "antd";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 const HeaderPrivate = () => {
   const { isMounted } = useMounted();
+  const router = useRouter();
   const { contextHolder, openNotificationWithIcon } = useNotificationApp();
   const { data, isLoading, error } = useQuery({
     queryKey: ["me"],
     queryFn: serverToGetMe,
+    retry: 1,
   });
-  console.log(data?.data);
+  const handleLogout = async () => {
+    await serverToLogout();
+    router.push("/login");
+  };
   if (error) {
     openNotificationWithIcon({
       type: "error",
@@ -107,6 +114,23 @@ const HeaderPrivate = () => {
         </span>
         &nbsp; {data?.data?.phone}
       </p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 10,
+        }}
+      >
+        <Button
+          style={{
+            width: "100%",
+          }}
+          type="primary"
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </div>
     </div>
   );
   if (!isMounted) return null;

@@ -1,5 +1,6 @@
 "use client";
 import { LoaderWrapper } from "@/components/loaders/styled";
+import useMounted from "@/hooks/useMounted";
 import { Loader_I } from "@/types";
 import React, { useEffect } from "react";
 
@@ -15,6 +16,9 @@ const Loader = ({ isPending }: Loader_I) => {
       document.body.classList.remove("no-scroll");
     };
   }, [isPending]);
+
+  const { isMounted } = useMounted();
+  if (!isMounted) return null;
   return (
     isPending && (
       <LoaderWrapper>

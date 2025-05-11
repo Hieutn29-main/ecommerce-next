@@ -15,7 +15,17 @@ const HeaderApp = () => {
   };
 
   const renderLink = (links: Record<string, string>) => {
+    const notActive = [
+      "carts",
+      "recipes",
+      "user",
+      "post",
+      "comment",
+      "todos",
+      "quoest",
+    ];
     return Object.entries(links).map(([key, value]) => {
+      if (notActive.includes(value)) return;
       return (
         <LinkWrapper
           key={key}
