@@ -1,6 +1,7 @@
 import ProductsDetail from "@/app/products/[id]/components/product-details";
 import LayoutGeneral from "@/components/layout-general";
 import { Metadata } from "next";
+import { Head } from "next/document";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -29,6 +30,26 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <LayoutGeneral>
+      <Head>
+        <meta
+          property="og:title"
+          content="products detail page ecormmerce dummy json"
+        />
+        <meta
+          property="og:description"
+          content="products detail page ecormmerce dummy json code by hieutn"
+        />
+        <meta
+          property="og:image"
+          content="https://blog.lipsumhub.com/wp-content/uploads/2024/12/how-to-create-dummy-data-in-json-lipsumhub.jpg"
+        />
+        <meta
+          property="og:url"
+          content="https://ecommerce-next-five-umber.vercel.app/"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Demo dummy json" />
+      </Head>
       <div
         style={{
           background: "#EFEEEA",
