@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Demo dummy json",
     images: [
       {
-        url: "https://blog.lipsumhub.com/wp-content/uploads/2024/12/how-to-create-dummy-data-in-json-lipsumhub.jpg",
+        url: "https://ecommerce-next-five-umber.vercel.app/images/bg-login.jpg",
       },
     ],
     locale: "en_US",
