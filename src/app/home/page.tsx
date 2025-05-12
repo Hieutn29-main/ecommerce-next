@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://ecommerce-next-five-umber.vercel.app/images/bg-login.jpg",
+        width: 1200,
+        height: 630,
       },
     ],
     locale: "en_US",

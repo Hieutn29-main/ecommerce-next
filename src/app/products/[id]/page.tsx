@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://blog.lipsumhub.com/wp-content/uploads/2024/12/how-to-create-dummy-data-in-json-lipsumhub.jpg",
+        width: 1200,
+        height: 630,
       },
     ],
     locale: "en_US",
