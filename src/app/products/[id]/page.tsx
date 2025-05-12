@@ -43,6 +43,9 @@ const page = () => {
           property="og:image"
           content="https://blog.lipsumhub.com/wp-content/uploads/2024/12/how-to-create-dummy-data-in-json-lipsumhub.jpg"
         />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta
           property="og:url"
           content="https://ecommerce-next-five-umber.vercel.app/"
