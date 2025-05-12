@@ -4,8 +4,29 @@ import Section3 from "@/app/home/section-3";
 import Section4 from "@/app/home/section-4";
 import Section5 from "@/app/home/section-5";
 import LayoutGeneral from "@/components/layout-general";
+import { Metadata } from "next";
 import React from "react";
 
+export const metadata: Metadata = {
+  title: "home page ecormmerce dummy json",
+  description: "home page ecormmerce dummy json code by hieutn",
+  openGraph: {
+    title: "home page ecormmerce dummy json",
+    description: "home page ecormmerce dummy json code by hieutn",
+    url: "https://ecommerce-next-five-umber.vercel.app/",
+    siteName: "Demo dummy json",
+    images: [
+      {
+        url: "https://blog.lipsumhub.com/wp-content/uploads/2024/12/how-to-create-dummy-data-in-json-lipsumhub.jpg",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://ecommerce-next-five-umber.vercel.app/",
+  },
+};
 const page = () => {
   return (
     <LayoutGeneral>
